@@ -1,5 +1,3 @@
-import java.util.Random;
-
 class SimpleStartup {
     private String name;
     private String[] cellLocation;
@@ -23,22 +21,27 @@ class SimpleStartup {
         return cellLocation;
     }
 
-    public String checkYourself(String guess){
+    public String checkYourself(String guess) {
         String result = "miss";
-        
-        for(int i=0; i < cellLocation.length ; i++){
-            if(guess.equals(cellLocation[i])){
-                
-                if (activeCell[i] != null){
+
+        for (int i = 0; i < cellLocation.length; i++) {
+            if (guess.equals(cellLocation[i])) {
+
+                if (activeCell[i] != null) {
                     activeCell[i] = null;
                     numOfHits++;
+
+                    if (numOfHits == cellLocation.length) {
+                        return "kill";
+                    }
+
                     return "hit";
-                }else{
-                    return "already hit"; 
+                } else {
+                    return "already hit";
                 }
-            } 
+            }
         }
+
         return result;
     }
-
 }
